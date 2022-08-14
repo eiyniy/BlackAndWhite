@@ -45,9 +45,10 @@ namespace BlackAndWhite.Assets.Scripts
 
         public override void PhysicsUpdate()
         {
-            if (Math.Abs(_player.Rb.velocity.x) < _player.MaxSpeed)
-                _player.Rb.velocity += _player.Acceleration * _dir * Time.deltaTime;
-
+            if (Math.Abs(_player.Rb.velocity.x) >= _player.MaxSpeed && (_player.Rb.velocity.x * _dir.x) > 0)
+                return;
+    
+            _player.Rb.velocity += _player.Acceleration * _dir * Time.deltaTime;
             _isFirstFrame = false;
 
             base.PhysicsUpdate();
