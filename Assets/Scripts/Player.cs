@@ -4,15 +4,23 @@ namespace BlackAndWhite.Assets.Scripts
 {
     public class Player : MonoBehaviour
     {
-        private readonly StateMachine _stateMachine;
+        private const float ErrorFactor = 0.1f;
+
+        private readonly StateMachine _movingStateMachine;
 
         [SerializeField] private Rigidbody2D _rb;
         [SerializeField] private float _acceleration;
         [SerializeField] private float _maxSpeed;
         [SerializeField] private float _jumpingForce;
 
+        private float _distToGround;
+        private Collider2D _collider;
+
 
         public Rigidbody2D Rb => _rb;
+
+        public float Width => _collider.bounds.size.x;
+        public float Height => _collider.bounds.size.y;
 
         public float Acceleration
         {
@@ -35,28 +43,40 @@ namespace BlackAndWhite.Assets.Scripts
         public State Standing { get; }
         public State Moving { get; }
         public State Jumping { get; }
-
+        
 
         public Player()
         {
-            _stateMachine = new StateMachine();
-            Standing = new StandingState(this, _stateMachine);
-            Moving = new MovingState(this, _stateMachine);
-            Jumping = new JumpingState(this, _stateMachine);
+            _movingStateMachine = new StateMachine();
 
-            _stateMachine.Initialize(Standing);
+            Standing = new StandingState(this, _movingStateMachine);
+            Moving = new MovingState(this, _movingStateMachine);
+            Jumping = new JumpingState(this, _movingStateMachine);
+
+            _movingStateMachine.Initialize(Standing);
         }
 
 
+        void Start()
+        {
+            _collider = GetComponent<Collider2D>();
+            _distToGround = Height / 2;
+        }
+
         void Update()
         {
-            _stateMachine.CurrentState.HandleInput();
-            _stateMachine.CurrentState.LogicUpdate();
+            _movingStateMachine.CurrentState.HandleInput();
+            _movingStateMachine.CurrentState.LogicUpdate();
         }
 
         void FixedUpdate()
         {
-            _stateMachine.CurrentState.PhysicsUpdate();
+            _movingStateMachine.CurrentState.PhysicsUpdate();
         }
+
+
+        public bool IsGrounded() =>
+            Physics2D.Raycast(Rb.position + new Vector2(Width / 2 - ErrorFactor, 0), -Vector2.up, _distToGround) ||
+            Physics2D.Raycast(Rb.position - new Vector2(Width / 2 - ErrorFactor, 0), -Vector2.up, _distToGround);
     }
 }

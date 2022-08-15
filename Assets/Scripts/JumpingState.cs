@@ -5,8 +5,10 @@ namespace BlackAndWhite.Assets.Scripts
 {
     public class JumpingState : State
     {
+        private readonly TimeSpan _raycastCooldawn = TimeSpan.FromSeconds(0.5);
+        
         private Vector2 _dir;
-        private bool _isForceAdded;
+        private DateTime _jumpTime;
 
 
         public JumpingState(Player player, StateMachine stateMachine) :
@@ -17,10 +19,15 @@ namespace BlackAndWhite.Assets.Scripts
 
         public override void Enter()
         {
-            _isForceAdded = false;
-            _player.Rb.velocity = new Vector2(_player.Rb.velocity.x / 5, 0);
-            _player.Rb.AddForce(new Vector2(0, _player.JumpingForce), ForceMode2D.Impulse);
-            _isForceAdded = true;
+            if (Input.GetKey("w"))
+            {
+                _player.Rb.velocity = new Vector2(_player.Rb.velocity.x / 5, 0);
+                _player.Rb.AddForce(new Vector2(0, _player.JumpingForce), ForceMode2D.Impulse);
+            }
+            else
+                _player.Rb.AddForce(new Vector2(Input.GetAxis("Horizontal") * _player.JumpingForce / 3, _player.JumpingForce / 2), ForceMode2D.Impulse);
+
+            _jumpTime = DateTime.Now;
         }
 
         public override void Exit()
@@ -34,8 +41,13 @@ namespace BlackAndWhite.Assets.Scripts
 
         public override void LogicUpdate()
         {
-            if (_player.Rb.velocity.y == 0 && _isForceAdded)
+            if (!_player.IsGrounded() || DateTime.Now - _jumpTime < _raycastCooldawn)
+                return;
+
+            if (_player.Rb.velocity.x == 0)
                 _stateMachine.ChangeState(_player.Standing);
+            else
+                _stateMachine.ChangeState(_player.Moving);
         }
 
         public override void PhysicsUpdate()
