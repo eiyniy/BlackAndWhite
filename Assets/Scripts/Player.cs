@@ -1,3 +1,5 @@
+using BlackAndWhite.Assets.Scripts.StateMachines.Base;
+using BlackAndWhite.Assets.Scripts.StateMachines.MovingStates;
 using UnityEngine;
 
 namespace BlackAndWhite.Assets.Scripts
@@ -43,6 +45,7 @@ namespace BlackAndWhite.Assets.Scripts
         public State Standing { get; }
         public State Moving { get; }
         public State Jumping { get; }
+        public State Falling { get; }
         
 
         public Player()
@@ -52,6 +55,7 @@ namespace BlackAndWhite.Assets.Scripts
             Standing = new StandingState(this, _movingStateMachine);
             Moving = new MovingState(this, _movingStateMachine);
             Jumping = new JumpingState(this, _movingStateMachine);
+            Falling = new FallingState(this, _movingStateMachine);
 
             _movingStateMachine.Initialize(Standing);
         }

@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace BlackAndWhite.Assets.Scripts
+namespace BlackAndWhite.Assets.Scripts.StateMachines.Base
 {
     public class StateMachine
     {

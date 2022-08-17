@@ -1,6 +1,7 @@
+using BlackAndWhite.Assets.Scripts.StateMachines.Base;
 using UnityEngine;
 
-namespace BlackAndWhite.Assets.Scripts
+namespace BlackAndWhite.Assets.Scripts.StateMachines.MovingStates
 {
     public class GroundedState : State
     {
@@ -28,7 +29,8 @@ namespace BlackAndWhite.Assets.Scripts
 
         public override void LogicUpdate()
         {
-
+            if (_player.Rb.velocity.y != 0)
+                _stateMachine.ChangeState(_player.Falling);
         }
 
         public override void PhysicsUpdate()

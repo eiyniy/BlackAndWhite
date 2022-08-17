@@ -1,6 +1,7 @@
+using BlackAndWhite.Assets.Scripts.StateMachines.Base;
 using UnityEngine;
 
-namespace BlackAndWhite.Assets.Scripts
+namespace BlackAndWhite.Assets.Scripts.StateMachines.MovingStates
 {
     public class StandingState : GroundedState
     {
