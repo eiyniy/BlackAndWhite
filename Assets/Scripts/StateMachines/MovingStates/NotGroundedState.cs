@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BlackAndWhite.Assets.Scripts.StateMachines.MovingStates
 {
-    public class NotGroundedState : State
+    public abstract class NotGroundedState : State
     {
         private Vector2 _dir;
 

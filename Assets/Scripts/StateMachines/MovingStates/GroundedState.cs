@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BlackAndWhite.Assets.Scripts.StateMachines.MovingStates
 {
-    public class GroundedState : State
+    public abstract class GroundedState : State
     {
         private readonly TimeSpan _fallingCooldawn = TimeSpan.FromSeconds(0.5);
         private DateTime _fallingCheckTimer;
@@ -23,7 +23,6 @@ namespace BlackAndWhite.Assets.Scripts.StateMachines.MovingStates
 
         public override void Exit()
         {
-
         }
 
         public override void HandleInput()
@@ -44,7 +43,6 @@ namespace BlackAndWhite.Assets.Scripts.StateMachines.MovingStates
 
         public override void PhysicsUpdate()
         {
-
         }
     }
 }

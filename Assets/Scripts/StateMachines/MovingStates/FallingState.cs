@@ -12,18 +12,23 @@ namespace BlackAndWhite.Assets.Scripts.StateMachines.MovingStates
 
         public override void Enter()
         {
+            base.Enter();
         }
 
         public override void Exit()
         {
+            base.Exit();
         }
 
         public override void HandleInput()
         {
+            base.HandleInput();
         }
 
         public override void LogicUpdate()
         {
+            base.LogicUpdate();
+
             if (!_player.IsGrounded())
                 return;
 
@@ -35,6 +40,7 @@ namespace BlackAndWhite.Assets.Scripts.StateMachines.MovingStates
 
         public override void PhysicsUpdate()
         {
+            base.PhysicsUpdate();
         }
     }
 }
