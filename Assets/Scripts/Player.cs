@@ -46,11 +46,11 @@ namespace BlackAndWhite.Assets.Scripts
         public State Moving { get; }
         public State Jumping { get; }
         public State Falling { get; }
-        
+
 
         public Player()
         {
-            _movingStateMachine = new StateMachine();
+            _movingStateMachine = new StateMachine { IsLoggingEnabled = false };
 
             Standing = new StandingState(this, _movingStateMachine);
             Moving = new MovingState(this, _movingStateMachine);

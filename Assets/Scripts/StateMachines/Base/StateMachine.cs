@@ -8,6 +8,8 @@ namespace BlackAndWhite.Assets.Scripts.StateMachines.Base
     {
         public State CurrentState { get; set; }
 
+        public bool IsLoggingEnabled { get; set; }
+
 
         public void Initialize(State startingState)
         {
@@ -17,7 +19,11 @@ namespace BlackAndWhite.Assets.Scripts.StateMachines.Base
 
         public void ChangeState(State state)
         {
-            Debug.Log($"{state.GetType().ToString().Split('.').TakeLast(2).First()} change state to {state.GetType().ToString().Split('.').Last()}");
+            if (IsLoggingEnabled)
+            {
+                var typeNames = state.GetType().ToString().Split('.');
+                Debug.Log($"{typeNames.TakeLast(2).First()} change state to {typeNames.Last()}");
+            }
 
             CurrentState.Exit();
 
