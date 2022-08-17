@@ -6,7 +6,7 @@ namespace BlackAndWhite.Assets.Scripts
 {
     public class Player : MonoBehaviour
     {
-        private const float ErrorFactor = 0.1f;
+        private const float ErrorFactor = 0.05f;
 
         private readonly StateMachine _movingStateMachine;
 

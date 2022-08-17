@@ -39,15 +39,19 @@ namespace BlackAndWhite.Assets.Scripts.StateMachines.MovingStates
         {
             base.LogicUpdate();
 
-            if (_player.Rb.velocity.x == 0 && !_isFirstFrame)
-                _stateMachine.ChangeState(_player.Standing);
+            if (_player.Rb.velocity.x != 0 ||
+                _isFirstFrame ||
+                _dir != new Vector2(0, 0))
+                return;
+
+            _stateMachine.ChangeState(_player.Standing);
         }
 
         public override void PhysicsUpdate()
         {
             if (Math.Abs(_player.Rb.velocity.x) >= _player.MaxSpeed && (_player.Rb.velocity.x * _dir.x) > 0)
                 return;
-    
+
             _player.Rb.velocity += _player.Acceleration * _dir * Time.deltaTime;
             _isFirstFrame = false;
 
