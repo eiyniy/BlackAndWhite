@@ -51,6 +51,10 @@
      <Compile Include="Assets\Scripts\StateMachines\Base\State.cs" />
      <Compile Include="Assets\Scripts\StateMachines\MovingStates\MovingState.cs" />
      <Compile Include="Assets\Scripts\StateMachines\MovingStates\GroundedState.cs" />
+     <Compile Include="Assets\Scripts\StateMachines\AttackingStates\AttackingState.cs" />
+     <Compile Include="Assets\Scripts\StateMachines\AttackingStates\CooldawnState.cs" />
+     <Compile Include="Assets\Scripts\StateMachines\AttackingStates\ReloadingState.cs" />
+     <Compile Include="Assets\Scripts\StateMachines\AttackingStates\ChargingState.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.6f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

@@ -17,7 +17,7 @@ namespace BlackAndWhite.Assets.Scripts.StateMachines.Base
 
         public void ChangeState(State state)
         {
-            Debug.Log($"change state to {state.GetType().ToString().Split('.').Last()}");
+            Debug.Log($"{state.GetType().ToString().Split('.').TakeLast(2).First()} change state to {state.GetType().ToString().Split('.').Last()}");
 
             CurrentState.Exit();
 
