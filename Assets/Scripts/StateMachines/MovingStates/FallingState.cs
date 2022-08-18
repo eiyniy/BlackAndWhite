@@ -10,21 +10,6 @@ namespace BlackAndWhite.Assets.Scripts.StateMachines.MovingStates
         }
 
 
-        public override void Enter()
-        {
-            base.Enter();
-        }
-
-        public override void Exit()
-        {
-            base.Exit();
-        }
-
-        public override void HandleInput()
-        {
-            base.HandleInput();
-        }
-
         public override void LogicUpdate()
         {
             base.LogicUpdate();
@@ -36,11 +21,6 @@ namespace BlackAndWhite.Assets.Scripts.StateMachines.MovingStates
                 _stateMachine.ChangeState(_player.Standing);
             else
                 _stateMachine.ChangeState(_player.Moving);
-        }
-
-        public override void PhysicsUpdate()
-        {
-            base.PhysicsUpdate();
         }
     }
 }

@@ -6,7 +6,6 @@ namespace BlackAndWhite.Assets.Scripts.StateMachines.MovingStates
 {
     public class MovingState : GroundedState
     {
-        private Vector2 _dir;
         private bool _isFirstFrame;
 
 
@@ -23,25 +22,13 @@ namespace BlackAndWhite.Assets.Scripts.StateMachines.MovingStates
             _isFirstFrame = true;
         }
 
-        public override void Exit()
-        {
-            base.Exit();
-        }
-
-        public override void HandleInput()
-        {
-            base.HandleInput();
-
-            _dir = new Vector2(Input.GetAxis("Horizontal"), 0).normalized;
-        }
-
         public override void LogicUpdate()
         {
             base.LogicUpdate();
 
             if (_player.Rb.velocity.x != 0 ||
                 _isFirstFrame ||
-                _dir != new Vector2(0, 0))
+                _horizontalInput != 0f)
                 return;
 
             _stateMachine.ChangeState(_player.Standing);
@@ -51,10 +38,10 @@ namespace BlackAndWhite.Assets.Scripts.StateMachines.MovingStates
         {
             base.PhysicsUpdate();
 
-            if (Math.Abs(_player.Rb.velocity.x) >= _player.MaxSpeed && (_player.Rb.velocity.x * _dir.x) > 0)
+            if (Math.Abs(_player.Rb.velocity.x) >= _player.MaxSpeed && (_player.Rb.velocity.x * _horizontalInput) > 0)
                 return;
 
-            _player.Rb.velocity += _player.Acceleration * _dir * Time.deltaTime;
+            _player.Rb.velocity += _player.Acceleration * new Vector2(_horizontalInput, 0f) * Time.deltaTime;
             _isFirstFrame = false;
         }
     }

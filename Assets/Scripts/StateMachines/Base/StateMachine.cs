@@ -8,7 +8,7 @@ namespace BlackAndWhite.Assets.Scripts.StateMachines.Base
     {
         public State CurrentState { get; set; }
 
-        public bool IsLoggingEnabled { get; set; }
+        public bool IsLoggingEnabled { get; set; } = false;
 
 
         public void Initialize(State startingState)

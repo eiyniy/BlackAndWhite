@@ -36,25 +36,28 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\StateMachines\MovingStates\MovingState.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
+     <Compile Include="Assets\Scripts\StateMachines\MovingStates\GroundedState.cs" />
+     <Compile Include="Assets\Scripts\StateMachines\MovingStates\JumpingState.cs" />
+     <Compile Include="Assets\Scripts\StateMachines\MovingStates\StandingState.cs" />
+     <Compile Include="Assets\Scripts\StateMachines\AttackingStates\ReloadingState.cs" />
+     <Compile Include="Assets\Scripts\Attack\AttackTypesProvider.cs" />
+     <Compile Include="Assets\Scripts\StateMachines\AttackingStates\CooldawnState.cs" />
+     <Compile Include="Assets\Scripts\StateMachines\MovingStates\FallingState.cs" />
+     <Compile Include="Assets\Scripts\StateMachines\Base\StateMachine.cs" />
+     <Compile Include="Assets\Scripts\StateMachines\AttackingStates\ChargingState.cs" />
      <Compile Include="Assets\Imports\Prototype Hero Demo - Pixel Art\Demo\Sensor_Prototype.cs" />
      <Compile Include="Assets\Imports\Bandits - Pixel Art\Demo\Bandit.cs" />
      <Compile Include="Assets\Imports\Bandits - Pixel Art\Demo\Sensor_Bandit.cs" />
      <Compile Include="Assets\Imports\Prototype Hero Demo - Pixel Art\Demo\PrototypeHeroDemo.cs" />
      <Compile Include="Assets\Imports\Prototype Hero Demo - Pixel Art\Demo\Dust_DestroyEvent.cs" />
-     <Compile Include="Assets\Imports\Prototype Hero Demo - Pixel Art\Demo\AudioManager_PrototypeHero.cs" />
-     <Compile Include="Assets\Scripts\StateMachines\MovingStates\StandingState.cs" />
-     <Compile Include="Assets\Scripts\StateMachines\MovingStates\NotGroundedState.cs" />
-     <Compile Include="Assets\Scripts\StateMachines\MovingStates\FallingState.cs" />
-     <Compile Include="Assets\Scripts\StateMachines\Base\StateMachine.cs" />
-     <Compile Include="Assets\Scripts\StateMachines\MovingStates\JumpingState.cs" />
-     <Compile Include="Assets\Scripts\StateMachines\Base\State.cs" />
-     <Compile Include="Assets\Scripts\StateMachines\MovingStates\MovingState.cs" />
-     <Compile Include="Assets\Scripts\StateMachines\MovingStates\GroundedState.cs" />
      <Compile Include="Assets\Scripts\StateMachines\AttackingStates\AttackingState.cs" />
-     <Compile Include="Assets\Scripts\StateMachines\AttackingStates\CooldawnState.cs" />
-     <Compile Include="Assets\Scripts\StateMachines\AttackingStates\ReloadingState.cs" />
-     <Compile Include="Assets\Scripts\StateMachines\AttackingStates\ChargingState.cs" />
+     <Compile Include="Assets\Scripts\StateMachines\MovingStates\NotGroundedState.cs" />
+     <Compile Include="Assets\Scripts\Attack\AttackType.cs" />
+     <Compile Include="Assets\Scripts\StateMachines\Base\State.cs" />
+     <Compile Include="Assets\Imports\Prototype Hero Demo - Pixel Art\Demo\AudioManager_PrototypeHero.cs" />
+     <Compile Include="Assets\Scripts\StateMachines\MovingStates\BaseMovingState.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.6f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

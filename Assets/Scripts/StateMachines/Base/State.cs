@@ -1,9 +1,12 @@
+using System;
+
 namespace BlackAndWhite.Assets.Scripts.StateMachines.Base
 {
     public abstract class State
     {
         protected Player _player;
         protected StateMachine _stateMachine;
+        protected DateTime _enteringTime;
 
 
         protected State(Player player, StateMachine stateMachine)
@@ -13,14 +16,17 @@ namespace BlackAndWhite.Assets.Scripts.StateMachines.Base
         }
 
 
-        public abstract void Enter();
+        public virtual void Enter() 
+        { 
+            _enteringTime = DateTime.Now;
+        }
 
-        public abstract void HandleInput();
+        public virtual void HandleInput() { }
 
-        public abstract void LogicUpdate();
+        public virtual void LogicUpdate() { }
 
-        public abstract void PhysicsUpdate();
+        public virtual void PhysicsUpdate() { }
 
-        public abstract void Exit();
+        public virtual void Exit() { }
     }
 }

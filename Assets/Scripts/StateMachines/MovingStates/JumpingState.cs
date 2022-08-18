@@ -27,16 +27,6 @@ namespace BlackAndWhite.Assets.Scripts.StateMachines.MovingStates
             _jumpTime = DateTime.Now;
         }
 
-        public override void Exit()
-        {
-            base.Exit();
-        }
-
-        public override void HandleInput()
-        {
-            base.HandleInput();
-        }
-
         public override void LogicUpdate()
         {
             base.LogicUpdate();
@@ -45,11 +35,6 @@ namespace BlackAndWhite.Assets.Scripts.StateMachines.MovingStates
                 return;
 
             _stateMachine.ChangeState(_player.Falling);
-        }
-
-        public override void PhysicsUpdate()
-        {
-            base.PhysicsUpdate();
         }
     }
 }
