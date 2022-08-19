@@ -1,4 +1,3 @@
-using System;
 using BlackAndWhite.Assets.Scripts.StateMachines.Base;
 using UnityEngine;
 
@@ -6,8 +5,6 @@ namespace BlackAndWhite.Assets.Scripts.StateMachines.MovingStates
 {
     public class BaseMovingState : State
     {
-        private bool _isRotateNeeded;
-
         protected float _horizontalInput;
 
 
@@ -20,25 +17,18 @@ namespace BlackAndWhite.Assets.Scripts.StateMachines.MovingStates
         public override void HandleInput()
         {
             base.HandleInput();
-            
-            _horizontalInput = Input.GetAxis("Horizontal");
 
-            if (_horizontalInput != 0f)
-            {
-                var currRotationY = _player.transform.rotation.y;
-                _isRotateNeeded = (currRotationY * _horizontalInput) < 0;
-            }
+            _horizontalInput = Input.GetAxis("Horizontal");
         }
 
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
-            
-            if (_isRotateNeeded)
-            {
-                _player.transform.Rotate(new(0f, 180f, 0f));
-                _isRotateNeeded = false;
-            }
+
+            if (_horizontalInput > 0 && _player.transform.rotation.y != 0)
+                _player.transform.rotation = new();
+            else if (_horizontalInput < 0)
+                _player.transform.rotation = new(0f, 180f, 0f, 0f);
         }
     }
 }

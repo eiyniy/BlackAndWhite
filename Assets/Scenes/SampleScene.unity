@@ -3492,7 +3492,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 1314949233}
-  _acceleration: 40
+  _acceleration: 10
   _maxSpeed: 15
   _jumpingForce: 20
   _attackCooldawn: 2000

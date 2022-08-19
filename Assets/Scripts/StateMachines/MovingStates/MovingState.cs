@@ -38,10 +38,8 @@ namespace BlackAndWhite.Assets.Scripts.StateMachines.MovingStates
         {
             base.PhysicsUpdate();
 
-            if (Math.Abs(_player.Rb.velocity.x) >= _player.MaxSpeed && (_player.Rb.velocity.x * _horizontalInput) > 0)
-                return;
+            _player.UpdateVelocity(_player.Acceleration, _player.MaxSpeed, _horizontalInput);
 
-            _player.Rb.velocity += _player.Acceleration * new Vector2(_horizontalInput, 0f) * Time.deltaTime;
             _isFirstFrame = false;
         }
     }

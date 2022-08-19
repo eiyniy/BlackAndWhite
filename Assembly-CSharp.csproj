@@ -42,6 +42,7 @@
      <Compile Include="Assets\Scripts\StateMachines\MovingStates\JumpingState.cs" />
      <Compile Include="Assets\Scripts\StateMachines\MovingStates\StandingState.cs" />
      <Compile Include="Assets\Scripts\StateMachines\AttackingStates\ReloadingState.cs" />
+     <Compile Include="Assets\Scripts\StateMachines\MovingStates\BaseMovingState.cs" />
      <Compile Include="Assets\Scripts\Attack\AttackTypesProvider.cs" />
      <Compile Include="Assets\Scripts\StateMachines\AttackingStates\CooldawnState.cs" />
      <Compile Include="Assets\Scripts\StateMachines\MovingStates\FallingState.cs" />
@@ -57,7 +58,6 @@
      <Compile Include="Assets\Scripts\Attack\AttackType.cs" />
      <Compile Include="Assets\Scripts\StateMachines\Base\State.cs" />
      <Compile Include="Assets\Imports\Prototype Hero Demo - Pixel Art\Demo\AudioManager_PrototypeHero.cs" />
-     <Compile Include="Assets\Scripts\StateMachines\MovingStates\BaseMovingState.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.6f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

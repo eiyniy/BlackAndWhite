@@ -65,7 +65,7 @@ namespace BlackAndWhite.Assets.Scripts
             get => _attackCountsToReload;
             set => _attackCountsToReload = value;
         }
-        
+
         public TimeSpan ReloadingTime
         {
             get => TimeSpan.FromMilliseconds(_reloadingTime);
@@ -80,7 +80,7 @@ namespace BlackAndWhite.Assets.Scripts
         public State Moving { get; }
         public State Jumping { get; }
         public State Falling { get; }
-        
+
         public State Attacking { get; }
         public State Charging { get; }
         public State Cooldawn { get; }
@@ -98,7 +98,7 @@ namespace BlackAndWhite.Assets.Scripts
             Moving = new MovingState(this, _movingStateMachine);
             Jumping = new JumpingState(this, _movingStateMachine);
             Falling = new FallingState(this, _movingStateMachine);
-            
+
             Attacking = new AttackingState(this, _attackingStateMachine);
             Charging = new ChargingState(this, _attackingStateMachine);
             Cooldawn = new CooldawnState(this, _attackingStateMachine);
@@ -131,6 +131,20 @@ namespace BlackAndWhite.Assets.Scripts
             _attackingStateMachine.CurrentState.PhysicsUpdate();
         }
 
+
+        public void UpdateVelocity(float acceleration, float maxSpeed, float horizontalInput)
+        {
+            if (horizontalInput == 0)
+                return;
+
+            var direction = (int)(horizontalInput / Math.Abs(horizontalInput));
+            Debug.Log(direction);
+
+            if (Math.Abs(Rb.velocity.x) >= maxSpeed && (Rb.velocity.x * direction) > 0)
+                return;
+
+            Rb.velocity += acceleration * new Vector2(direction, 0f) * Time.deltaTime;
+        }
 
         public bool IsGrounded() =>
             Physics2D.Raycast(Rb.position + new Vector2(Width / 2 - ErrorFactor, 0), -Vector2.up, _distToGround) ||
