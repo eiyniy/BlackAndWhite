@@ -1,16 +1,14 @@
-using System;
-using BlackAndWhite.Assets.Scripts.StateMachines.Base;
-using UnityEngine;
+using BlackAndWhite.Assets.Scripts.BaseStateMachine;
 
-namespace BlackAndWhite.Assets.Scripts.StateMachines.MovingStates
+namespace BlackAndWhite.Assets.Scripts.Moving.MovingStates
 {
     public class MovingState : GroundedState
     {
         private bool _isFirstFrame;
 
 
-        public MovingState(Player player, StateMachine stateMachine) :
-            base(player, stateMachine)
+        public MovingState(Player player, MovingLogic movingLogic, StateMachine stateMachine) :
+            base(player, movingLogic, stateMachine)
         {
         }
 
@@ -31,14 +29,14 @@ namespace BlackAndWhite.Assets.Scripts.StateMachines.MovingStates
                 _horizontalInput != 0f)
                 return;
 
-            _stateMachine.ChangeState(_player.Standing);
+            _stateMachine.ChangeState(_movingLogic.Standing);
         }
 
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
 
-            _player.UpdateVelocity(_player.Acceleration, _player.MaxSpeed, _horizontalInput);
+            _player.UpdateVelocity(_movingLogic.Acceleration, _movingLogic.MaxSpeed, _horizontalInput);
 
             _isFirstFrame = false;
         }

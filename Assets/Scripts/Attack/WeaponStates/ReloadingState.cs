@@ -1,16 +1,16 @@
 using System;
-using BlackAndWhite.Assets.Scripts.StateMachines.Base;
+using BlackAndWhite.Assets.Scripts.BaseStateMachine;
 using UnityEngine;
 
-namespace BlackAndWhite.Assets.Scripts.StateMachines.AttackingStates
+namespace BlackAndWhite.Assets.Scripts.Attack.WeaponStates
 {
-    public class ReloadingState : State
+    public class ReloadingState : BaseWeaponState
     {
         private DateTime _reloadTimer;
 
 
-        public ReloadingState(Player player, StateMachine stateMachine) :
-            base(player, stateMachine)
+        public ReloadingState(Weapon weapon, StateMachine stateMachine) :
+            base(weapon, stateMachine)
         {
         }
 
@@ -20,8 +20,8 @@ namespace BlackAndWhite.Assets.Scripts.StateMachines.AttackingStates
             get
             {
                 var timeLeft = DateTime.Now - _reloadTimer;
-                return timeLeft < _player.ReloadingTime
-                    ? _player.ReloadingTime - timeLeft
+                return timeLeft < _weapon.ReloadingTime
+                    ? _weapon.ReloadingTime - timeLeft
                     : TimeSpan.Zero;
             }
         }
@@ -30,7 +30,7 @@ namespace BlackAndWhite.Assets.Scripts.StateMachines.AttackingStates
         public override void Enter()
         {
             base.Enter();
-            
+
             _reloadTimer = DateTime.Now;
         }
 
@@ -47,7 +47,7 @@ namespace BlackAndWhite.Assets.Scripts.StateMachines.AttackingStates
             if (TimeRemaining > TimeSpan.Zero)
                 return;
 
-            _stateMachine.ChangeState(_player.Cooldawn);
+            _stateMachine.ChangeState(_weapon.Cooldawn);
         }
     }
 }

@@ -1,15 +1,15 @@
-using BlackAndWhite.Assets.Scripts.StateMachines.Base;
+using BlackAndWhite.Assets.Scripts.BaseStateMachine;
 using UnityEngine;
 
-namespace BlackAndWhite.Assets.Scripts.StateMachines.MovingStates
+namespace BlackAndWhite.Assets.Scripts.Moving.MovingStates
 {
-    public class BaseMovingState : State
+    public class BaseMovingState : BaseMoveState
     {
         protected float _horizontalInput;
 
 
-        public BaseMovingState(Player player, StateMachine stateMachine) :
-            base(player, stateMachine)
+        public BaseMovingState(Player player, MovingLogic movingLogic, StateMachine stateMachine) :
+            base(player, movingLogic, stateMachine)
         {
         }
 

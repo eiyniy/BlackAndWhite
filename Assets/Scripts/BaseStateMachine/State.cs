@@ -1,17 +1,15 @@
 using System;
 
-namespace BlackAndWhite.Assets.Scripts.StateMachines.Base
+namespace BlackAndWhite.Assets.Scripts.BaseStateMachine
 {
     public abstract class State
     {
-        protected Player _player;
         protected StateMachine _stateMachine;
         protected DateTime _enteringTime;
 
 
-        protected State(Player player, StateMachine stateMachine)
+        protected State(StateMachine stateMachine)
         {
-            _player = player;
             _stateMachine = stateMachine;
         }
 

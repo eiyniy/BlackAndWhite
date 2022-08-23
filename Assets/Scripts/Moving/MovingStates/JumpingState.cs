@@ -1,8 +1,8 @@
 using System;
-using BlackAndWhite.Assets.Scripts.StateMachines.Base;
+using BlackAndWhite.Assets.Scripts.BaseStateMachine;
 using UnityEngine;
 
-namespace BlackAndWhite.Assets.Scripts.StateMachines.MovingStates
+namespace BlackAndWhite.Assets.Scripts.Moving.MovingStates
 {
     public class JumpingState : NotGroundedState
     {
@@ -11,8 +11,8 @@ namespace BlackAndWhite.Assets.Scripts.StateMachines.MovingStates
         private DateTime _jumpTime;
 
 
-        public JumpingState(Player player, StateMachine stateMachine) :
-            base(player, stateMachine)
+        public JumpingState(Player player, MovingLogic movingLogic, StateMachine stateMachine) :
+            base(player, movingLogic, stateMachine)
         {
         }
 
@@ -22,7 +22,7 @@ namespace BlackAndWhite.Assets.Scripts.StateMachines.MovingStates
             base.Enter();
 
             _player.Rb.velocity = new Vector2(_player.Rb.velocity.x / 3, 0);
-            _player.Rb.AddForce(new Vector2(0, _player.JumpingForce), ForceMode2D.Impulse);
+            _player.Rb.AddForce(new Vector2(0, _movingLogic.JumpingForce), ForceMode2D.Impulse);
 
             _jumpTime = DateTime.Now;
         }
@@ -34,7 +34,7 @@ namespace BlackAndWhite.Assets.Scripts.StateMachines.MovingStates
             if (DateTime.Now - _jumpTime < _raycastCooldawn)
                 return;
 
-            _stateMachine.ChangeState(_player.Falling);
+            _stateMachine.ChangeState(_movingLogic.Falling);
         }
     }
 }

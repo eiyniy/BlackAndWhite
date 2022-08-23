@@ -1,9 +1,8 @@
 using System;
-using System.Text.RegularExpressions;
-using BlackAndWhite.Assets.Scripts.StateMachines.Base;
+using BlackAndWhite.Assets.Scripts.BaseStateMachine;
 using UnityEngine;
 
-namespace BlackAndWhite.Assets.Scripts.StateMachines.MovingStates
+namespace BlackAndWhite.Assets.Scripts.Moving.MovingStates
 {
     public abstract class GroundedState : BaseMovingState
     {
@@ -11,8 +10,8 @@ namespace BlackAndWhite.Assets.Scripts.StateMachines.MovingStates
         private DateTime _fallingCheckTimer;
 
 
-        public GroundedState(Player player, StateMachine stateMachine) :
-            base(player, stateMachine)
+        public GroundedState(Player player, MovingLogic movingLogic, StateMachine stateMachine) :
+            base(player, movingLogic, stateMachine)
         {
         }
 
@@ -32,19 +31,23 @@ namespace BlackAndWhite.Assets.Scripts.StateMachines.MovingStates
                 return;
 
             if (Input.GetKeyDown("space"))
-                _stateMachine.ChangeState(_player.Jumping);
+                _stateMachine.ChangeState(_movingLogic.Jumping);
         }
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();
             
+            Debug.Log(_player);
+            Debug.Log(_player?.Rb);
+            Debug.Log(_player?.Rb?.velocity);
+            
             if (_player.Rb.velocity.y == 0 ||
                 DateTime.Now - _fallingCheckTimer <= _fallingCooldawn)
                 return;
 
             _fallingCheckTimer = DateTime.Now;
-            _stateMachine.ChangeState(_player.Falling);
+            _stateMachine.ChangeState(_movingLogic.Falling);
         }
     }
 }
